@@ -3,7 +3,17 @@
 
 #new-section[ Task 1.d ]
 #slide[
-  TODO: Task
+  - Extend task 1.b to execute:
+
+  #align(center, `/usr/bin/env`)
+
+  - And pass it some environment variables:
+
+  #align(center, ```
+    aaa=1234
+    bbb=5678
+    cccc=1234
+  ```)
 ]
 
 #new-section[ Task 1.d: Solution ]

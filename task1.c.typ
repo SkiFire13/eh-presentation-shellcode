@@ -61,6 +61,8 @@
   #text(size: 18pt, grid(columns: (1fr, 1.5fr), left, right))
 ]
 
+  // #let chars = (`l`, `s`, ` `, `-`, `l`, `a`, `\0`, `\0`, `-`, `c`, `\0`, `\0`, `/`, `b`, `i`, `n`, `/`, `s`, `h`, `\0`)
+  // #grid(columns: (auto,) * chars.len(), ..chars.map(it => rect(width: 1.5em, height: 1.5em, align(center + horizon, it))))
 // TODO: Show stack?
 
 #slide[
