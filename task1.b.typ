@@ -40,6 +40,15 @@
   #code
 ]
 
+// #let elems = (`"\0\0\0\0"`, `"//sh"`, `"/bin"`, "0", "ptr")
+// #grid(
+//   columns: (6em,),
+//   rows: (1.4em,) * 5,
+//   row-gutter: 0pt,
+//   column-gutter: 0pt,
+//   ..elems.map(it => rect(width: 100%, height: 100%, outset: 0pt, align(center, it)))
+// )
+
 #new-section[ Task 1.b: Solution ]
 
 #slide[
@@ -47,7 +56,7 @@
     ; Store the argument string on stack
     mov  eax, "###h"
     shr  eax, 24
-    push eax          ; Push "h\x00\x00\x00" to the stack
+    push eax
     push "/bas"
     push "/bin"
     mov  ebx, esp     ; Get the string address
@@ -55,7 +64,7 @@
     ; Construct the argument array argv[]
     xor  eax, eax
     push eax          ; argv[1] = 0
-    push ebx          ; argv[0] = "/bin/sh\0"
+    push ebx          ; argv[0] points "/bin/bash"
     mov  ecx, esp     ; Get the address of argv[]
   
     ; For environment variable 
@@ -67,24 +76,34 @@
     int 0x80
   ```)
 
-  #let notes = [
-    - `"###h"` is equivalent to the integer `0x68232323`
+  #let notes = uncover(2, mode: "transparent")[
+    #align(center)[
+      `"###h"`
 
-    - Shifting right by 24 gives us `0x00000068`
+      $arrow.b.double$
 
-    - Which is `"h\x00\x00\x00"`
+      `0x68232323`
+
+      $arrow.b.double #place(dy: -0.3em, text(size: 18pt, "shift right"))$
+
+      `0x00000068`
+
+      $arrow.b.double$
+
+      `"h\0\0\0"`
+    ]
   ]
 
-  #place(dx: 60%, dy: 40%, box(width: 40%, notes))
+  #place(dx: 60%, dy: 15%, box(width: 40%, notes))
   #code
 ]
 
 // TODO: Show stack?
 
 #slide[
-  TODO: Show shell
+  #align(center, v(-10%) + scale(x: 90%, y: 90%, image("exe1b.png")))
 ]
 
 #slide[
-  TODO: Show bytes
+  #align(center, v(-10%) + scale(x: 90%, y: 90%, image("obj1b.png")))
 ]
